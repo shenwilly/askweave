@@ -1,4 +1,6 @@
 $(function(){
+	switch_to_page("index-page");
+	
 	$("#home-icon").click(function() {
 		switch_to_page("index-page");
 	})
@@ -8,8 +10,8 @@ $(function(){
 	})
 
 	$("#ask-btn").click(function() {
-		var card = $("#card-template").html()
-		$("#card-list").append(card);
+		var card = $("#question-card-template").html()
+		$("#question-card-list").append(card);
 	})
 });
 
