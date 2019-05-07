@@ -2,17 +2,59 @@
 
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+<meta charset="utf-8">
 
-  <title>Querweave</title>
-  <meta name="description" content="Querweave">
-  <meta name="author" content="shenwilly">
+	<title>Querweave</title>
+	<meta name="description" content="Querweave">
+	<meta name="author" content="shenwilly">
 
-  <!-- <link rel="stylesheet" href="css/styles.css?v=1.0"> -->
+	<script src="https://unpkg.com/arweave/bundles/web.bundle.min.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
 
+	<style type="text/css">
+		.question-card {
+			cursor: pointer;
+		}
+	</style>
 </head>
 
 <body>
-  <!-- <script src="js/scripts.js"></script> -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+		<div class="container">
+			<a class="navbar-brand" href="#">Querweave</a>
+			<button type="button" class="btn btn-primary">Ask a Question</button>
+		</div>
+	</nav>
+
+	<div class="container">
+		<div class="row mt-2">
+			<div class="col-lg-12">
+				<div class="card mt-2 question-card">
+				  <div class="card-body">
+				    <h5 class="card-title">What is Arweave?</h5>
+				    <p class="card-text">What is it used for? What differs it from Bitcoin?</p>
+				  </div>
+				</div>
+				<div class="card mt-2 question-card">
+				  <div class="card-body">
+				    <h5 class="card-title">What is Arweave?</h5>
+				    <p class="card-text">What is it used for? What differs it from Bitcoin?</p>
+				  </div>
+				</div>
+				<div class="card mt-2 question-card">
+				  <div class="card-body">
+				    <h5 class="card-title">What is Arweave?</h5>
+				    <p class="card-text">What is it used for? What differs it from Bitcoin?</p>
+				  </div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<script>
+		var arweave = Arweave.init({host: 'arweave.net', port: 443, protocol: 'https'});
+	</script>
 </body>
 </html>
