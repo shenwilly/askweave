@@ -1,6 +1,8 @@
 $(function(){
+	var public_address;
+
 	switch_to_page("index-page");
-	
+
 	$("#home-icon").click(function() {
 		switch_to_page("index-page");
 	})
@@ -24,4 +26,14 @@ function switch_to_page(page) {
 	pages.forEach(function(p) {
 		$("#"+p).hide();
 	});$("#"+page).show();
+}
+
+function update_login_state(is_logged_in) {
+	if (is_logged_in) {
+		$(".not-logged-in").hide();
+		$(".logged-in").show();
+	} else {
+		$(".not-logged-in").show();
+		$(".logged-in").hide();
+	}
 }

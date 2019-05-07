@@ -18,6 +18,7 @@
 	<script src="https://unpkg.com/arweave/bundles/web.bundle.min.js"></script>
 
 	<script src="view.js"></script>
+	<script src="login.js"></script>
 
 	<style type="text/css">
 		.file-input{
@@ -48,8 +49,8 @@
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
 		<div class="container">
 			<a class="navbar-brand" href="#" id="home-icon">Querweave</a>
-			<button type="button" class="btn btn-success login-btn" data-toggle="modal" data-target="#loginModal">Login to Ask Question</button>
-			<button type="button" class="btn btn-primary" id="ask-btn" style="display: none">Ask a Question</button>
+			<button type="button" class="btn btn-success not-logged-in" data-toggle="modal" data-target="#loginModal">Login to Ask Question</button>
+			<button type="button" class="btn btn-primary logged-in" id="ask-btn" style="display: none">Ask a Question</button>
 		</div>
 	</nav>
 
@@ -105,11 +106,11 @@
 			</div>
 		</div>
 		<div class="row mb-4">
-			<div class="col-lg-12">
+			<div class="col-lg-12 not-logged-in">
 				<hr>
 				<button type="button" class="btn btn-success login-btn" data-toggle="modal" data-target="#loginModal">Login to Answer</button>
 			</div>
-			<div class="col-lg-12" id="answer-form" style="display: none">
+			<div class="col-lg-12 logged-in" id="answer-form" style="display: none">
 				<hr>
 				<h5>Have an answer?</h5>
 				<textarea class="form-control" style="min-width: 100%"></textarea>
@@ -152,7 +153,7 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="file-input">
-							<input type="file" id="file">
+							<input type="file" id="file" onchange="login(this.files)">
 							<div id="desc">Drop a keyfile to login</div>
 						</div>
 					</div>
@@ -165,11 +166,6 @@
 
 	<script>
 		var arweave = Arweave.init({host: 'arweave.net', port: 443, protocol: 'https'});
-
-		// arweave.transactions.getStatus('sPZ6FH57oTIfc3C8kfu4OfSlkb8UAt4waWmyRoMA7ZI').then(status => {
-		//     console.log(status, "<<	");
-		//     // 200
-		// })
 
 	</script>
 </body>
