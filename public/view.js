@@ -1,6 +1,4 @@
 $(function(){
-	var public_address;
-
 	switch_to_page("index-page");
 
 	$("#home-icon").click(function() {
@@ -28,12 +26,14 @@ function switch_to_page(page) {
 	});$("#"+page).show();
 }
 
-function update_login_state(is_logged_in) {
+function update_login_state(is_logged_in, address) {
 	if (is_logged_in) {
 		$(".not-logged-in").hide();
 		$(".logged-in").show();
+		$("#public-address").html(address);
 	} else {
 		$(".not-logged-in").show();
 		$(".logged-in").hide();
+		$("#public-address").html();
 	}
 }
