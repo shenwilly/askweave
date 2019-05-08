@@ -20,6 +20,7 @@
 	<script src="view.js"></script>
 	<script src="login.js"></script>
 	<script src="get_questions.js"></script>
+	<script src="get_answers.js"></script>
 	<script src="ask_question.js"></script>
 	<script src="answer_question.js"></script>
 
@@ -65,7 +66,7 @@
 	<div class="container" id="index-page">
 		<div class="row mt-2">
 			<div class="col-lg-12" id="question-card-list">
-				
+
 			</div>
 		</div>
 	</div>
@@ -80,7 +81,7 @@
 		</div>
 		<div class="row">
 			<div class="col-lg-12" id="answer-card-list">
-				<div class="card mt-2 answer-card">
+				<!-- <div class="card mt-2 answer-card">
 				  <div class="card-header">
 					Andrew <span class="font-weight-light font-italic text-muted">- 23 minutes ago</span>
 				  </div>
@@ -99,7 +100,7 @@
 						Arweave connects those with disk space to spare, with others that need dependable data storage. This system offers unparalleled levels of data replication and security for users, as well as financial incentives for participants in the network, all while cutting out the middleman.
 					</p>
 				  </div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 		<div class="row mb-4">
@@ -126,14 +127,16 @@
 	</div>
 
 	<div id="answer-card-template" style="display: none">
-	  <div class="card-header">
-		<span class="author-name">[name]</span> <span class="answer-date font-weight-light font-italic text-muted">[datetime]</span>
-	  </div>
-	  <div class="card-body">
-		<p>
-			[answer]
-		</p>
-	  </div>
+		<div class="card mt-2 answer-card" card-id="[id]">
+			<div class="card-header">
+				<span class="author-name">[author]</span> <span class="answer-date font-weight-light font-italic text-muted">- [datetime]</span>
+			</div>
+			<div class="card-body">
+				<p>
+					[answer]
+				</p>
+			</div>
+		</div>
 	</div>
 
 	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
