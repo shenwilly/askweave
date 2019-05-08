@@ -45,6 +45,10 @@
 			width: 100%;
 			height: 100%;
 		}
+		.card-header {
+			padding-top: 5px;
+			padding-bottom: 5px;
+		}
 		.question-card {
 			cursor: pointer;
 		}
@@ -88,6 +92,9 @@
 	<div class="container" id="detail-page" style="display: none">
 		<div class="row mt-4">
 			<div class="col-lg-12">
+				<p class="pull-right text-muted" style="font-size: 0.75rem">
+					<i><span class="question-author"></span> - <span class="question-datetime"></span></i>
+				</p>
 				<h3 class="question-title">[title]</h3>
 				<p class="question-description">[description]</p>
 				<hr>
@@ -123,8 +130,9 @@
 	</div>
 
 	<div id="question-card-template" style="display: none">
-		<div class="card mt-2 question-card" card-id="[id]">
+		<div class="card mt-2 question-card" card-id="[id]" author-id="[author]">
 		  <div class="card-body">
+			<i><p class="pull-right text-muted card-datetime" style="font-size: 0.75rem">[datetime]</p></i>
 			<h5 class="card-title">[question]</h5>
 			<p style="white-space: pre-wrap;" class="card-description mb-0">[description]</p>
 		  </div>
@@ -134,7 +142,7 @@
 	<div id="answer-card-template" style="display: none">
 		<div class="card mt-2 answer-card" card-id="[id]">
 			<div class="card-header">
-				<span class="author-name">[author]</span> <span class="answer-date font-weight-light font-italic text-muted">- [datetime]</span>
+				<span class="font-weight-light font-italic text-muted">[author] - [datetime]</span>
 			</div>
 			<div class="card-body">
 				<p style="white-space: pre-wrap;" class="mb-0">[answer]</p>

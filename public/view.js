@@ -7,12 +7,15 @@ $(function(){
 
 	$("#question-card-list").on('click', '.question-card', function() {
 		var question_id = $(this).attr('card-id');
+		var question_author = $(this).attr('author-id');
+		var question_datetime = $(this).find('.card-datetime').html();
 		var question_title = $(this).find('.card-title').html();
 		var question_description = $(this).find('.card-description').html();
+		$("#detail-page .question-author").html(question_author);
+		$("#detail-page .question-datetime").html(question_datetime);
 		$("#detail-page .question-title").html(question_title);
 		$("#detail-page .question-description").html(question_description);
 		$("#answer-btn").attr("question-id", question_id);
-		console.log(question_id);
 
 	    get_answers(question_id);
 	    switch_to_page("detail-page");

@@ -2,7 +2,7 @@ function get_questions () {
     (async () => {
         $("#question-card-list").empty()
         $(".loading-question").show();
-        
+
         let query =
 			{
 			    op: 'and',
@@ -52,6 +52,7 @@ function get_questions () {
                 var data = JSON.parse(jsonData);
 
                 tx_row['id'] = id
+                tx_row['from'] = await arweave.wallets.ownerToAddress(tx.owner)
                 tx_row['question'] = data["question"]
                 tx_row['description'] = data["description"]
 
@@ -64,7 +65,13 @@ function get_questions () {
         tx_rows.forEach(function (item) {
             var question_card = $("#question-card-template").html()
 
+            var datetime = new Date(item["unixTime"]*1000);
+            var date_options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+            var formatted_datetime = datetime.toLocaleDateString('default', date_options)
+
             question_card = question_card.replace("\[id\]", item["id"]);
+            question_card = question_card.replace("\[author\]", item["from"]);
+            question_card = question_card.replace("\[datetime\]", formatted_datetime);
             question_card = question_card.replace("\[question\]", item["question"]);
             question_card = question_card.replace("\[description\]", item["description"]);
 
