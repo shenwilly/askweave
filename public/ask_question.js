@@ -7,7 +7,6 @@ function ask_question () {
         var data = {
             'question': question,
             'description': description,
-            'unix_time': unixTime
         }
 
         var tx =
@@ -21,6 +20,7 @@ function ask_question () {
         tx.addTag('App-Name', 'querweave')
         tx.addTag('App-Version', versionNumber)
         tx.addTag('Unix-Time', unixTime)
+        tx.addTag('Type', 'question')
         await arweave.transactions.sign(tx, wallet)
         console.log(tx.id)
         await arweave.transactions.post(tx)
