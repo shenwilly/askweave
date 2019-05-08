@@ -1,5 +1,8 @@
 function answer_question (question_id) {
     (async () => {
+        if (!$("#answer-form").valid() || $("#answer-btn").hasClass("disabled")) return;
+        $("#answer-btn").addClass("disabled").addClass("wait");
+
         var answer = $("#input_answer").val();
         var unixTime = Math.round((new Date()).getTime() / 1000)
 
@@ -25,6 +28,7 @@ function answer_question (question_id) {
         await arweave.transactions.post(tx)
 
         $("#input_answer").val('');
+        $("#answer-btn").removeClass("disabled").removeClass("wait");
         alert('Answer dispatched!')
     })()
 }

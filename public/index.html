@@ -8,10 +8,12 @@
 	<meta name="description" content="Querweave">
 	<meta name="author" content="shenwilly">
 	
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="
 	sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="
 	sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
@@ -46,13 +48,22 @@
 		.question-card {
 			cursor: pointer;
 		}
+		.form-group {
+			margin-bottom: 0;
+		}
+		.error {
+			color: red;
+		}
+		.wait {
+			cursor: wait !important;
+		}
 	</style>
 </head>
 
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
 		<div class="container flex">
-			<a class="navbar-brand" href="#" id="home-icon">Querweave</a></button>
+			<a class="navbar-brand" href="#" id="home-icon" onclick="get_questions()">Querweave</a></button>
 			<span class="navbar-text" id="public-address">
 				
 			</span>
@@ -65,6 +76,9 @@
 
 	<div class="container" id="index-page">
 		<div class="row mt-2">
+			<div class="col-lg-12 mt-5 loading-question" style="text-align: center">
+				<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+			</div>
 			<div class="col-lg-12" id="question-card-list">
 
 			</div>
@@ -74,12 +88,18 @@
 	<div class="container" id="detail-page" style="display: none">
 		<div class="row mt-4">
 			<div class="col-lg-12">
-				<h3 class="question-title">What is Arweave?</h3>
-				<p class="question-description">What is it used for? What differs it from Bitcoin?</p>
+				<h3 class="question-title">[title]</h3>
+				<p class="question-description">[description]</p>
 				<hr>
 			</div>
 		</div>
 		<div class="row">
+			<div class="col-lg-12 loading-answer" style="text-align: center">
+				<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+			</div>
+			<div class="col-lg-12 no-answer" style="text-align: center; display: none">
+				<h5>No Answers Yet</h5>
+			</div>
 			<div class="col-lg-12" id="answer-card-list">
 
 			</div>
@@ -89,11 +109,15 @@
 				<hr>
 				<button type="button" class="btn btn-success login-btn" data-toggle="modal" data-target="#loginModal">Login to Answer</button>
 			</div>
-			<div class="col-lg-12 logged-in" id="answer-form" style="display: none">
+			<div class="col-lg-12 logged-in" style="display: none">
 				<hr>
 				<h5>Have an answer?</h5>
-				<textarea class="form-control" style="min-width: 100%" id="input_answer"></textarea>
-				<button type="button" class="btn btn-success mt-3" id="answer-btn">Post Answer!</button>
+		      	<form id="answer-form">
+		      		<div class="form-group">
+						<textarea class="form-control" style="min-width: 100%" id="input_answer" required="true"></textarea>
+		      		</div>
+					<button type="button" class="btn btn-success mt-3" id="answer-btn">Post Answer!</button>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -153,14 +177,20 @@
 	        </button>
 	      </div>
 	      <div class="modal-body">
-      	    <label for="input_question">Question</label>
-	        <input type="text" class="form-control" id="input_question" placeholder="Enter your question here">
-      	    <label for="input_description" class="mt-4">Description</label>
-			<textarea class="form-control" id="input_description" placeholder="Enter additional description here" style="min-width: 100%"></textarea>
+	      	<form id="question-form">
+	      		<div class="form-group">
+		      	    <label for="input_question">Question</label>
+			        <input type="text" class="form-control" id="input_question" name="input_question" placeholder="Enter your question here" required="true">
+				</div>
+	      		<div class="form-group">
+		      	    <label for="input_description" class="mt-4">Description</label>
+					<textarea class="form-control" id="input_description" placeholder="Enter additional description here" style="min-width: 100%" required="true"></textarea>
+				</div>
+	      	</form>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-primary" onclick="ask_question()">Submit Question</button>
+	        <button type="button" class="btn btn-primary" onclick="ask_question()" id="question-btn">Submit Question</button>
 	      </div>
 	    </div>
 	  </div>
