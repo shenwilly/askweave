@@ -6,13 +6,21 @@ $(function(){
 	})
 
 	$("#question-card-list").on('click', '.question-card', function() {
-	    get_answers();
+		var question_id = $(this).attr('card-id');
+		var question_title = $(this).find('.card-title').html();
+		var question_description = $(this).find('.card-description').html();
+		$("#detail-page .question-title").html(question_title);
+		$("#detail-page .question-description").html(question_description);
+		$("#answer-btn").attr("question-id", question_id);
+		console.log(question_id);
+
+	    get_answers(question_id);
 	    switch_to_page("detail-page");
 	});
 
-	$("#ask-btn").click(function() {
-		var card = $("#question-card-template").html()
-		$("#question-card-list").append(card);
+	$("#answer-btn").click(function() {
+		var question_id = $('#answer-btn').attr('question-id');
+		answer_question(question_id);
 	})
 });
 

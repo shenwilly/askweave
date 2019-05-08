@@ -1,4 +1,4 @@
-function answer_question () {
+function answer_question (question_id) {
     (async () => {
         var answer = $("#input_answer").val();
         var unixTime = Math.round((new Date()).getTime() / 1000)
@@ -18,6 +18,7 @@ function answer_question () {
         tx.addTag('App-Name', 'querweave')
         tx.addTag('App-Version', versionNumber)
         tx.addTag('Unix-Time', unixTime)
+        tx.addTag('Question-Tx', question_id)
         tx.addTag('Type', 'answer')
         await arweave.transactions.sign(tx, wallet)
         console.log(tx.id)
