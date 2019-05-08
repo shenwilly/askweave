@@ -1,6 +1,8 @@
 function get_answers (question_id) {
     (async () => {
         $("#answer-card-list").empty()
+        $(".loading-answer").show();
+        $(".no-answer").hide();
 
         let query =
 			{
@@ -68,6 +70,11 @@ function get_answers (question_id) {
             }))
         }
 
+        $(".loading-answer").hide();
+        if (tx_rows.length === 0) {
+            $(".no-answer").show();
+        }
+        
         tx_rows.sort((a, b) => (Number(b.unixTime) - Number(a.unixTime)))
         tx_rows.forEach(function (item) {
             var answer_card = $("#answer-card-template").html()

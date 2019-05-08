@@ -1,5 +1,8 @@
 function get_questions () {
     (async () => {
+        $("#question-card-list").empty()
+        $(".loading-question").show();
+        
         let query =
 			{
 			    op: 'and',
@@ -56,6 +59,7 @@ function get_questions () {
             }))
         }
 
+        $(".loading-question").hide();
         tx_rows.sort((a, b) => (Number(b.unixTime) - Number(a.unixTime)))
         tx_rows.forEach(function (item) {
             var question_card = $("#question-card-template").html()
