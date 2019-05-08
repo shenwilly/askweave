@@ -5,9 +5,9 @@ $(function(){
 		switch_to_page("index-page");
 	})
 
-	$(".question-card").click(function() {
-		switch_to_page("detail-page");
-	})
+	$("#question-card-list").on('click', '.question-card', function() {
+	    switch_to_page("detail-page");
+	});
 
 	$("#ask-btn").click(function() {
 		var card = $("#question-card-template").html()
