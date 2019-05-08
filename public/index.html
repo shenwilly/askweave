@@ -65,18 +65,7 @@
 	<div class="container" id="index-page">
 		<div class="row mt-2">
 			<div class="col-lg-12" id="question-card-list">
-				<div class="card mt-2 question-card" card-id="[id]">
-				  <div class="card-body">
-					<h5 class="card-title">What is Arweave?</h5>
-					<p class="card-text">What is it used for? What differs it from Bitcoin?</p>
-				  </div>
-				</div>
-				<div class="card mt-2 question-card">
-				  <div class="card-body">
-					<h5 class="card-title">What is Arweave?</h5>
-					<p class="card-text">What is it used for? What differs it from Bitcoin?</p>
-				  </div>
-				</div>
+				
 			</div>
 		</div>
 	</div>
@@ -121,8 +110,8 @@
 			<div class="col-lg-12 logged-in" id="answer-form" style="display: none">
 				<hr>
 				<h5>Have an answer?</h5>
-				<textarea class="form-control" style="min-width: 100%"></textarea>
-				<button type="button" class="btn btn-success mt-3" id="answer-btn">Post Answer!</button>
+				<textarea class="form-control" style="min-width: 100%" id="input_answer"></textarea>
+				<button type="button" class="btn btn-success mt-3" onclick="answer_question()">Post Answer!</button>
 			</div>
 		</div>
 	</div>
@@ -138,7 +127,7 @@
 
 	<div id="answer-card-template" style="display: none">
 	  <div class="card-header">
-		<span class="author-name">[name]</span> <span class="answer-date font-weight-light font-italic text-muted">datetime</span>
+		<span class="author-name">[name]</span> <span class="answer-date font-weight-light font-italic text-muted">[datetime]</span>
 	  </div>
 	  <div class="card-body">
 		<p>
@@ -198,6 +187,7 @@
 	<script>
 		var arweave = Arweave.init({host: 'arweave.net', port: 443, protocol: 'https'});
 		var versionNumber = '0.0.1';
+		get_questions();
 	</script>
 </body>
 </html>
