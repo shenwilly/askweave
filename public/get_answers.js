@@ -1,4 +1,4 @@
-function get_answers () {
+function get_answers (question_id) {
     (async () => {
         $("#answer-card-list").empty()
 
@@ -23,9 +23,19 @@ function get_answers () {
 					},
 			    expr2:
 					{
-                        op: 'equals',
-                        expr1: 'Type',
-                        expr2: 'answer'
+                        op: 'and',
+                        expr1:
+                            {
+                                op: 'equals',
+                                expr1: 'Type',
+                                expr2: 'answer',
+                            },
+                        expr2:
+                            {
+                                op: 'equals',
+                                expr1: 'Question-Tx',
+                                expr2: question_id,
+                            }
 					},
 			}
 
