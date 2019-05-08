@@ -1,2 +1,2 @@
 # Querweave
-Basic Q&amp;A permaweb using Arweave
+A Q&amp;A permaweb, powered by Arweave
