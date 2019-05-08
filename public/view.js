@@ -6,6 +6,7 @@ $(function(){
 	})
 
 	$("#question-card-list").on('click', '.question-card', function() {
+	    get_answers();
 	    switch_to_page("detail-page");
 	});
 
