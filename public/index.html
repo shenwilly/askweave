@@ -74,33 +74,14 @@
 	<div class="container" id="detail-page" style="display: none">
 		<div class="row mt-4">
 			<div class="col-lg-12">
-				<h3>What is Arweave?</h3>
-				<p>What is it used for? What differs it from Bitcoin?</p>
+				<h3 class="question-title">What is Arweave?</h3>
+				<p class="question-description">What is it used for? What differs it from Bitcoin?</p>
 				<hr>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-lg-12" id="answer-card-list">
-				<!-- <div class="card mt-2 answer-card">
-				  <div class="card-header">
-					Andrew <span class="font-weight-light font-italic text-muted">- 23 minutes ago</span>
-				  </div>
-				  <div class="card-body">
-					<p>
-						Arweave connects those with disk space to spare, with others that need dependable data storage. This system offers unparalleled levels of data replication and security for users, as well as financial incentives for participants in the network, all while cutting out the middleman.
-					</p>
-				  </div>
-				</div>
-				<div class="card mt-2 answer-card">
-				  <div class="card-header">
-					Andrew <span class="font-weight-light font-italic text-muted">- 23 minutes ago</span>
-				  </div>
-				  <div class="card-body">
-					<p>
-						Arweave connects those with disk space to spare, with others that need dependable data storage. This system offers unparalleled levels of data replication and security for users, as well as financial incentives for participants in the network, all while cutting out the middleman.
-					</p>
-				  </div>
-				</div> -->
+
 			</div>
 		</div>
 		<div class="row mb-4">
@@ -112,7 +93,7 @@
 				<hr>
 				<h5>Have an answer?</h5>
 				<textarea class="form-control" style="min-width: 100%" id="input_answer"></textarea>
-				<button type="button" class="btn btn-success mt-3" onclick="answer_question()">Post Answer!</button>
+				<button type="button" class="btn btn-success mt-3" id="answer-btn">Post Answer!</button>
 			</div>
 		</div>
 	</div>
@@ -121,7 +102,7 @@
 		<div class="card mt-2 question-card" card-id="[id]">
 		  <div class="card-body">
 			<h5 class="card-title">[question]</h5>
-			<p style="white-space: pre-wrap;" class="card-text">[description]</p>
+			<p style="white-space: pre-wrap;" class="card-description mb-0">[description]</p>
 		  </div>
 		</div>
 	</div>
@@ -132,7 +113,7 @@
 				<span class="author-name">[author]</span> <span class="answer-date font-weight-light font-italic text-muted">- [datetime]</span>
 			</div>
 			<div class="card-body">
-				<p style="white-space: pre-wrap;">[answer]</p>
+				<p style="white-space: pre-wrap;" class="mb-0">[answer]</p>
 			</div>
 		</div>
 	</div>
