@@ -27,7 +27,9 @@ function get_questions () {
 					},
 			}
 
+        console.log('fetching questions...')
     	const res = await this.arweave.api.post(`arql`, query)
+        console.log('fetching questions success!')
         var tx_rows = []
         if (res.data == '') {
             tx_rows = []
@@ -47,7 +49,6 @@ function get_questions () {
                 var data = JSON.parse(jsonData);
 
                 tx_row['id'] = id
-                tx_row['tx_status'] = await this.arweave.transactions.getStatus(id)
                 tx_row['question'] = data["question"]
                 tx_row['description'] = data["description"]
 

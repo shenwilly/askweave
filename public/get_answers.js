@@ -66,7 +66,6 @@ function get_answers () {
             var date_options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' };
             var formatted_datetime = datetime.toLocaleDateString('default', date_options)
 
-
             answer_card = answer_card.replace("\[id\]", item["id"]);
             answer_card = answer_card.replace("\[author\]", item["from"]);
             answer_card = answer_card.replace("\[datetime\]", formatted_datetime);
