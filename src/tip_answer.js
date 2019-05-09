@@ -1,34 +1,33 @@
-function tip_answer (answer_id) {
+function tip_answer (question_id, answer_id, author_id, amount) {
     (async () => {
-        if (!$("#answer-form").valid() || $("#answer-btn").hasClass("disabled")) return;
-        $("#answer-btn").addClass("disabled").addClass("wait");
+        console.log("TIP", question_id, answer_id, author_id, amount);
+        // if (!$("#answer-form").valid() || $("#answer-btn").hasClass("disabled")) return;
+        
+        $(".tip-btn").addClass("disabled").addClass("wait");
 
-        var answer = $("#input_answer").val();
         var unixTime = Math.round((new Date()).getTime() / 1000)
 
-        var data = {
-            'answer': answer,
-        }
-
-        var tx =
+        var tx = 
             await arweave.createTransaction(
-                {
-                    data: JSON.stringify(data),
-                },
-                wallet
-            )
+            {
+                target: author_id,
+                quantity: arweave.ar.arToWinston(amount)
+            }, 
+            wallet
+        );
 
         tx.addTag('App-Name', 'querweave')
         tx.addTag('App-Version', versionNumber)
         tx.addTag('Unix-Time', unixTime)
         tx.addTag('Question-Tx', question_id)
-        tx.addTag('Type', 'answer')
+        tx.addTag('Answer-Tx', answer_id)
+        tx.addTag('Type', 'tip')
         await arweave.transactions.sign(tx, wallet)
         console.log(tx.id)
         await arweave.transactions.post(tx)
 
-        $("#input_answer").val('');
-        $("#answer-btn").removeClass("disabled").removeClass("wait");
-        alert('Answer dispatched!')
+        $(".tip-input").val('');
+        $(".tip-btn").removeClass("disabled").removeClass("wait");
+        alert('Tip dispatched!')
     })()
 }
