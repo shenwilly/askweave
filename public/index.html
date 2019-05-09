@@ -52,6 +52,10 @@
 		.question-card {
 			cursor: pointer;
 		}
+		.card-body {
+			padding-top: 15px;
+			padding-bottom: 15px;
+		}
 		.form-group {
 			margin-bottom: 0;
 		}
@@ -60,6 +64,18 @@
 		}
 		.wait {
 			cursor: wait !important;
+		}
+		.color-arweave {
+			color: #7cbcd8;
+		}
+		.btn-arweave {
+		    color: #fff;
+		    background-color: #7cbcd8;
+		    border-color: #7cbcd8;
+		}
+		.btn-arweave:hover {
+			color:#fff;
+			background-color:#68a8c4;
 		}
 	</style>
 </head>
@@ -72,7 +88,7 @@
 				
 			</span>
 			<span class="navbar-item">
-				<button type="button" class="btn btn-success not-logged-in" data-toggle="modal" data-target="#loginModal">Login to Ask Question
+				<button type="button" class="btn btn-success not-logged-in" data-toggle="modal" data-target="#loginModal">Login to Ask Question</button>
 				<button type="button" class="btn btn-primary logged-in" data-toggle="modal" data-target="#askQuestionModal" style="display: none">Ask a Question</button>
 			</span>
 		</div>
@@ -146,11 +162,20 @@
 	<div id="answer-card-template" style="display: none">
 		<div class="card mt-2 answer-card" card-id="[id]">
 			<div class="card-header">
-				<span class="font-weight-light font-italic text-muted">[author]</span>
+				<span class="font-weight-light font-italic text-muted">[author] - </span>
+				<span class="card-points">
+					<span class="has-no-value">
+						<strong>0 <span class="color-arweave">AR</span> tipped</strong>
+					</span>
+					<span class="has-value">
+						<strong><span class="card-value">300</span> <span style="color: #53aac7">AR</span> tipped!</strong>
+					</span>
+				</span>
 				<span class="font-weight-light font-italic text-muted pull-right">[datetime]</span>
 			</div>
 			<div class="card-body">
 				<p style="white-space: pre-wrap;" class="mb-0">[answer]</p>
+				<button type="button" class="btn btn-arweave pull-right">Tip This Answer</button>
 			</div>
 		</div>
 	</div>
