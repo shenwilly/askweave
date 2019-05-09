@@ -25,6 +25,7 @@
 	<script src="../src/get_answers.js"></script>
 	<script src="../src/ask_question.js"></script>
 	<script src="../src/answer_question.js"></script>
+	<script src="../src/tip_answer.js"></script>
 
 	<style type="text/css">
 		.file-input{
@@ -58,6 +59,9 @@
 		}
 		.form-group {
 			margin-bottom: 0;
+		}
+		.clickable {
+			cursor: pointer;
 		}
 		.error {
 			color: red;
@@ -162,12 +166,12 @@
 	<div id="answer-card-template" style="display: none">
 		<div class="card mt-2 answer-card" card-id="[id]">
 			<div class="card-header">
-				<span class="font-weight-light font-italic text-muted">[author] - </span>
+				<span class="font-weight-light font-italic text-muted"><span class="card-author">[author]</span> - </span>
 				<span class="card-points">
 					<span class="has-no-value">
 						<strong>0 <span class="color-arweave">AR</span> tipped</strong>
 					</span>
-					<span class="has-value">
+					<span class="has-value" style="display: none">
 						<strong><span class="card-value">300</span> <span style="color: #53aac7">AR</span> tipped!</strong>
 					</span>
 				</span>
@@ -175,7 +179,33 @@
 			</div>
 			<div class="card-body">
 				<p style="white-space: pre-wrap;" class="mb-0">[answer]</p>
-				<button type="button" class="btn btn-arweave pull-right">Tip This Answer</button>
+				<div class="d-flex flex-row justify-content-end">
+					<div>
+						<form class="tip-form">
+							<div class="input-group">
+								<i class="pt-1 pr-1 fa fa-times fa-2x text-danger clickable tip-close" aria-hidden="true" style="display: none"></i>
+								<input type="number" style="display: none" class="form-control tip-input" placeholder="Enter amount (AR)" required="true">
+								<span class="input-group-btn ml-2 pull-right">
+									<button type="button" class="btn btn-arweave pull-right tip-toggle">Tip This Answer</button>
+									<button type="button" class="btn btn-arweave pull-right tip-btn" style="display: none">Tip!</button>
+								</span>
+							</div>
+						</form>
+					</div>
+				</div>
+				<!-- <div class="container">
+					<div class="row">
+						<div class="d-flex justify-content-end">
+							<div class="p-2 bd-highlight">Flex item</div>
+							<div class="input-group">
+							   <input type="number" style="display: none" class="form-control" id="input_tip" name="input_tip" placeholder="Enter your question here" required="true">
+							   <span class="input-group-btn pull-right">
+									<button type="button" class="btn btn-arweave pull-right">Tip This Answer</button>
+							   </span>
+							</div>
+						</div>
+					</div>
+				</div> -->
 			</div>
 		</div>
 	</div>

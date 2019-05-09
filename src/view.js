@@ -25,10 +25,31 @@ $(function(){
 	    switch_to_page("detail-page");
 	});
 
+	$("#answer-card-list").on('click', '.tip-toggle', function() {
+		$(this).parents(".tip-form").find('.tip-close').show();
+		$(this).parents(".tip-form").find('.tip-btn').show();
+		$(this).parents(".tip-form").find('.tip-input').show();
+		$(this).parents(".tip-form").find('.tip-toggle').hide();
+	});
+
+	$("#answer-card-list").on('click', '.tip-close', function() {
+		$(this).parents(".tip-form").find('.tip-close').hide();
+		$(this).parents(".tip-form").find('.tip-btn').hide();
+		$(this).parents(".tip-form").find('.tip-input').hide();
+		$(this).parents(".tip-form").find('.tip-toggle').show();
+	});
+
+	$("#answer-card-list").on('click', '.tip-btn', function() {
+		var answer_id = $(this).parents(".answer-card").attr('card-id');
+		var answer_author = $(this).parents(".answer-card").find('.card-author').html();
+		var tip_amount = $(this).parents(".answer-card").find('.tip-input').val();
+		tip_answer(answer_id, answer_author, tip_amount);
+	});
+
 	$("#answer-btn").click(function() {
 		var question_id = $('#answer-btn').attr('question-id');
 		answer_question(question_id);
-	})
+	});
 });
 
 function switch_to_page(page) {
