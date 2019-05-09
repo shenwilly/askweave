@@ -25,19 +25,37 @@ function get_answers (question_id) {
 					},
 			    expr2:
 					{
-                        op: 'and',
-                        expr1:
-                            {
-                                op: 'equals',
-                                expr1: 'Type',
-                                expr2: 'answer',
-                            },
-                        expr2:
-                            {
-                                op: 'equals',
-                                expr1: 'Question-Tx',
-                                expr2: question_id,
-                            }
+                        op: 'or',
+                        expr1: {
+                            op: 'and',
+                            expr1:
+                                {
+                                    op: 'equals',
+                                    expr1: 'Type',
+                                    expr2: 'answer',
+                                },
+                            expr2:
+                                {
+                                    op: 'equals',
+                                    expr1: 'Question-Tx',
+                                    expr2: question_id,
+                                }
+                        },
+                        expr2: {
+                            op: 'and',
+                            expr1:
+                                {
+                                    op: 'equals',
+                                    expr1: 'Type',
+                                    expr2: 'tip',
+                                },
+                            expr2:
+                                {
+                                    op: 'equals',
+                                    expr1: 'Question-Tx',
+                                    expr2: question_id,
+                                }
+                        }
 					},
 			}
 
@@ -45,11 +63,15 @@ function get_answers (question_id) {
     	const res = await this.arweave.api.post(`arql`, query)
         console.log('fetching answers success!')
         var tx_rows = []
+        var tips_hash = {}
         if (res.data == '') {
             tx_rows = []
         } else {
-		    tx_rows = await Promise.all(res.data.map(async function (id, i) {
+		    await Promise.all(res.data.map(async function (id, i) {
                 let tx_row = {}
+                var tx_type;
+                var tx_answer_id
+
                 var tx = await this.arweave.transactions.get(id)
 
                 tx_row['unixTime'] = '0'
@@ -57,7 +79,18 @@ function get_answers (question_id) {
                     let key = tag.get('name', { decode: true, string: true })
                     let value = tag.get('value', { decode: true, string: true })
                     if (key === 'Unix-Time') tx_row['unixTime'] = value
+                    if (key === 'Type') tx_type = value
+
+                    // tip only
+                    if (key === 'Answer-Tx') tx_answer_id = (value)
                 })
+
+                // hackish tip condition
+                if (tx_type === 'tip') {
+                    if (!(tx_answer_id in tips_hash)) tips_hash[tx_answer_id] = 0
+                    tips_hash[tx_answer_id] += parseInt(tx.get('quantity'))
+                    return;
+                }
 
                 var jsonData = tx.get('data', {decode: true, string: true})
                 var data = JSON.parse(jsonData);
@@ -66,7 +99,7 @@ function get_answers (question_id) {
                 tx_row['from'] = await arweave.wallets.ownerToAddress(tx.owner)
                 tx_row['answer'] = data["answer"]
 
-                return tx_row
+                tx_rows.push(tx_row)
             }))
         }
 
