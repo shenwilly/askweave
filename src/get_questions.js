@@ -77,5 +77,7 @@ function get_questions () {
 
             $("#question-card-list").append(question_card);
         })
+
+        mark_owned_questions()
     })()
 }

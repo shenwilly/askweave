@@ -11,6 +11,10 @@ $(function(){
 		var question_datetime = $(this).find('.card-datetime').html();
 		var question_title = $(this).find('.card-title').html();
 		var question_description = $(this).find('.card-description').html();
+
+		var address = $("#public-address").html();
+		if (address === question_author) question_author = "You created this";
+
 		$("#detail-page .question-author").html(question_author);
 		$("#detail-page .question-datetime").html(question_datetime);
 		$("#detail-page .question-title").html(question_title);
@@ -43,9 +47,23 @@ function update_login_state(is_logged_in, address) {
 		$(".not-logged-in").hide();
 		$(".logged-in").show();
 		$("#public-address").html(address);
+		mark_owned_questions()
 	} else {
 		$(".not-logged-in").show();
 		$(".logged-in").hide();
 		$("#public-address").html();
+	}
+}
+
+function mark_owned_questions() {
+	var address = $("#public-address").html();
+
+	if (address.length > 0) {
+		$("#question-card-list .question-card").each(function(index) {
+			if ($(this).attr('author-id') == address) {
+				$(this).find('.card-is-owner').html('You created this - ')
+			}
+		});
+
 	}
 }

@@ -121,7 +121,7 @@
 				<h5>Have an answer?</h5>
 		      	<form id="answer-form">
 		      		<div class="form-group">
-						<textarea class="form-control" style="min-width: 100%" id="input_answer" required="true"></textarea>
+						<textarea class="form-control" rows="3" style="min-width: 100%" id="input_answer" required="true"></textarea>
 		      		</div>
 					<button type="button" class="btn btn-success mt-3" id="answer-btn">Post Answer!</button>
 				</form>
@@ -132,7 +132,11 @@
 	<div id="question-card-template" style="display: none">
 		<div class="card mt-2 question-card" card-id="[id]" author-id="[author]">
 		  <div class="card-body">
-			<i><p class="pull-right text-muted card-datetime" style="font-size: 0.75rem">[datetime]</p></i>
+			<i>
+				<p class="pull-right text-muted" style="font-size: 0.75rem">
+					<span class="card-is-owner"></span><span class="card-datetime">[datetime]</span>
+				</p>
+			</i>
 			<h5 class="card-title">[question]</h5>
 			<p style="white-space: pre-wrap;" class="card-description mb-0">[description]</p>
 		  </div>
@@ -142,7 +146,8 @@
 	<div id="answer-card-template" style="display: none">
 		<div class="card mt-2 answer-card" card-id="[id]">
 			<div class="card-header">
-				<span class="font-weight-light font-italic text-muted">[author] - [datetime]</span>
+				<span class="font-weight-light font-italic text-muted">[author]</span>
+				<span class="font-weight-light font-italic text-muted pull-right">[datetime]</span>
 			</div>
 			<div class="card-body">
 				<p style="white-space: pre-wrap;" class="mb-0">[answer]</p>
