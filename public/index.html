@@ -81,6 +81,30 @@
 			color:#fff;
 			background-color:#68a8c4;
 		}
+		.btn-arweave.active {
+			background-color:#68a8c4;
+		.btn-tip-amount:hover {
+			color: #fff;
+			background-color:#7cbcd8;
+		}
+		.btn-tip-amount.selected-tip  {
+			color: #fff;
+			background-color:#7cbcd8;
+			border-color: #68a8c4;
+		}*/
+		.limited-height {
+		  display: block;
+		  text-overflow: ellipsis;
+		  overflow: hidden;
+		  max-height: 3.6em;
+		  line-height: 1.8em;
+		  display: -webkit-box; 
+		  -webkit-line-clamp: 2;
+		  -webkit-box-orient: vertical; 
+		}
+		.pre-wrap {
+			white-space: pre-wrap;
+		}
 	</style>
 </head>
 
@@ -116,7 +140,7 @@
 					<i><span class="question-author"></span> - <span class="question-datetime"></span></i>
 				</p>
 				<h3 class="question-title">[title]</h3>
-				<p class="question-description">[description]</p>
+				<p class="question-description pre-wrap">[description]</p>
 				<hr>
 			</div>
 		</div>
@@ -158,7 +182,7 @@
 				</p>
 			</i>
 			<h5 class="card-title">[question]</h5>
-			<p style="white-space: pre-wrap;" class="card-description mb-0">[description]</p>
+			<p class="card-description mb-0 limited-height pre-wrap">[description]</p>
 		  </div>
 		</div>
 	</div>
@@ -183,10 +207,20 @@
 					<div>
 						<form class="tip-form">
 							<div class="input-group">
-								<i class="pt-1 pr-1 fa fa-times fa-2x text-danger clickable tip-close" aria-hidden="true" style="display: none"></i>
-								<input type="number" style="display: none" class="form-control tip-input" placeholder="Enter amount (AR)" required="true">
-								<span class="input-group-btn ml-2 pull-right">
+								<i class="pt-2 fa fa-times fa-2x text-danger clickable tip-close" aria-hidden="true" style="display: none"></i>
+								<span class="input-group-btn mt-2 ml-2 pull-right">
 									<button type="button" class="btn btn-arweave pull-right tip-toggle">Tip This Answer</button>
+									<div class="btn-group btn-group-toggle tip-radio-group mr-2" data-toggle="buttons" style="display: none;">
+									  <label class="btn btn-arweave active clickable">
+									    <input type="radio" value="0.01" name="options" init autocomplete="off" checked>0.01
+									  </label>
+									  <label class="btn btn-arweave clickable">
+									    <input type="radio" value="0.1" name="options" autocomplete="off">0.1
+									  </label>
+									  <label class="btn btn-arweave clickable">
+									    <input type="radio" value="1" name="options" autocomplete="off">1
+									  </label>
+									</div>
 									<button type="button" class="btn btn-arweave pull-right tip-btn" style="display: none">Tip!</button>
 								</span>
 							</div>
