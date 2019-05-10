@@ -1,8 +1,5 @@
 function tip_answer (question_id, answer_id, author_id, amount) {
     (async () => {
-        console.log("TIP", question_id, answer_id, author_id, amount);
-        // if (!$("#answer-form").valid() || $("#answer-btn").hasClass("disabled")) return;
-        
         $(".tip-btn").addClass("disabled").addClass("wait");
 
         var unixTime = Math.round((new Date()).getTime() / 1000)
@@ -26,8 +23,14 @@ function tip_answer (question_id, answer_id, author_id, amount) {
         console.log(tx.id)
         await arweave.transactions.post(tx)
 
-        $(".tip-input").val('');
         $(".tip-btn").removeClass("disabled").removeClass("wait");
-        alert('Tip dispatched!')
+        $(".answer-card[card-id='"+answer_id+"'] .option-btn").removeClass("active");
+        $(".answer-card[card-id='"+answer_id+"'] .option-btn.init").addClass("active");
+        $(".answer-card[card-id='"+answer_id+"'] .tip-form").find('.tip-close').hide();
+        $(".answer-card[card-id='"+answer_id+"'] .tip-form").find('.tip-btn').hide();
+        $(".answer-card[card-id='"+answer_id+"'] .tip-form").find('.tip-input').hide();
+        $(".answer-card[card-id='"+answer_id+"'] .tip-form").find('.tip-radio-group').hide();
+        $(".answer-card[card-id='"+answer_id+"'] .tip-form").find('.tip-toggle').show();
+        alert(amount + ' AR tip dispatched!')
     })()
 }
