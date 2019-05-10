@@ -29,6 +29,7 @@ $(function(){
 		$(this).parents(".tip-form").find('.tip-close').show();
 		$(this).parents(".tip-form").find('.tip-btn').show();
 		$(this).parents(".tip-form").find('.tip-input').show();
+		$(this).parents(".tip-form").find('.tip-radio-group').show();
 		$(this).parents(".tip-form").find('.tip-toggle').hide();
 	});
 
@@ -36,6 +37,7 @@ $(function(){
 		$(this).parents(".tip-form").find('.tip-close').hide();
 		$(this).parents(".tip-form").find('.tip-btn').hide();
 		$(this).parents(".tip-form").find('.tip-input').hide();
+		$(this).parents(".tip-form").find('.tip-radio-group').hide();
 		$(this).parents(".tip-form").find('.tip-toggle').show();
 	});
 
@@ -43,7 +45,7 @@ $(function(){
 		var question_id = $('#answer-btn').attr('question-id');
 		var answer_id = $(this).parents(".answer-card").attr('card-id');
 		var answer_author = $(this).parents(".answer-card").find('.card-author').html();
-		var tip_amount = $(this).parents(".answer-card").find('.tip-input').val();
+		var tip_amount = $(this).parents(".input-group-btn").find('.active input').val();
 		tip_answer(question_id, answer_id, answer_author, tip_amount);
 	});
 
