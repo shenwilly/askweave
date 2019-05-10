@@ -19,13 +19,13 @@
 
 	<script src="https://unpkg.com/arweave/bundles/web.bundle.min.js"></script>
 
-	<script src="../src/view.js"></script>
-	<script src="../src/login.js"></script>
-	<script src="../src/get_questions.js"></script>
-	<script src="../src/get_answers.js"></script>
-	<script src="../src/ask_question.js"></script>
-	<script src="../src/answer_question.js"></script>
-	<script src="../src/tip_answer.js"></script>
+	<script src="./js/view.js"></script>
+	<script src="./js/login.js"></script>
+	<script src="./js/get_questions.js"></script>
+	<script src="./js/get_answers.js"></script>
+	<script src="./js/ask_question.js"></script>
+	<script src="./js/answer_question.js"></script>
+	<script src="./js/tip_answer.js"></script>
 
 	<style type="text/css">
 		.file-input{
@@ -97,6 +97,10 @@
 		.pre-wrap {
 			white-space: pre-wrap;
 		}
+		.icon-frame {
+			width: 30px;
+			height: 30px;
+		}
 	</style>
 </head>
 
@@ -115,12 +119,25 @@
 	</nav>
 
 	<div class="container" id="index-page">
-		<div class="row mt-2">
+		<div class="row my-2">
 			<div class="col-lg-12 mt-5 loading-question" style="text-align: center">
 				<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
 			</div>
 			<div class="col-lg-12" id="question-card-list">
 
+			</div>
+		</div>
+		<div class="row mt-2 mb-4">
+			<div class="col-lg-12">
+				<hr>
+				<span class="pull-right">
+					<a href="https://www.arweave.org/" target="_blank" class="mr-1">
+						<img class="icon-frame" src="./img/arweave.png">
+					</a> 
+					<a href="https://github.com/shenwilly/Querweave/" target="_blank">
+						<img class="icon-frame" src="./img/github.png">
+					</a> 
+				</span>
 			</div>
 		</div>
 	</div>
