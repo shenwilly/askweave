@@ -130,6 +130,7 @@
 		<div class="row mt-2 mb-4">
 			<div class="col-lg-12">
 				<hr>
+				<span class="clickable" data-toggle="modal" data-target="#aboutModal">About</span>
 				<span class="pull-right">
 					<a href="https://www.arweave.org/" target="_blank" class="mr-1">
 						<img class="icon-frame" src="./img/arweave.png">
@@ -290,6 +291,29 @@
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 	        <button type="button" class="btn btn-primary" onclick="ask_question()" id="question-btn">Submit Question</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModal" aria-hidden="true">
+	  <div class="modal-dialog modal-lg" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title">About</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	      	<p>
+	      		Querweave is a permaweb Quora-like question & answer platform, where both answers are curated by users in a decentralized way.
+	      		<br>
+	      		Powered by Arweave, all questions and answers are forever stored and accessible anywhere!
+	      	</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 	      </div>
 	    </div>
 	  </div>
