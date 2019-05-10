@@ -81,11 +81,10 @@ function get_answers (question_id) {
                     if (key === 'Unix-Time') tx_row['unixTime'] = value
                     if (key === 'Type') tx_type = value
 
-                    // tip only
+                    // for tip only
                     if (key === 'Answer-Tx') tx_answer_id = (value)
                 })
 
-                // hackish tip condition
                 if (tx_type === 'tip') {
                     if (!(tx_answer_id in tips_hash)) tips_hash[tx_answer_id] = 0
                     tips_hash[tx_answer_id] += parseInt(tx.get('quantity'))
@@ -108,7 +107,23 @@ function get_answers (question_id) {
             $(".no-answer").show();
         }
         
-        tx_rows.sort((a, b) => (Number(b.unixTime) - Number(a.unixTime)))
+        tx_rows.sort((a, b) => {
+            var a_tip = 0;
+            var b_tip = 0;
+            if (a["id"] in tips_hash) {
+                a_tip = tips_hash[a["id"]]
+            } 
+            if (b["id"] in tips_hash) {
+                b_tip = tips_hash[b["id"]]
+            } 
+
+            if (a_tip === b_tip) {
+                return (Number(b.unixTime) - Number(a.unixTime));
+            } else {
+                return b_tip - a_tip;
+            }
+        })
+
         tx_rows.forEach(function (item) {
             var answer_card = $("#answer-card-template").html()
 
@@ -116,9 +131,17 @@ function get_answers (question_id) {
             var date_options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' };
             var formatted_datetime = datetime.toLocaleDateString('default', date_options)
 
-            answer_card = answer_card.replace("\[id\]", item["id"]);
+            var answer_id = item["id"]
+            var tip_amount = 0;
+            if (answer_id in tips_hash) {
+                var winston = tips_hash[answer_id];
+                // remove trailing zeroes
+                tip_amount = parseFloat(arweave.ar.winstonToAr(winston)).toString();
+            } 
+            answer_card = answer_card.replace("\[id\]", answer_id);
             answer_card = answer_card.replace("\[author\]", item["from"]);
             answer_card = answer_card.replace("\[datetime\]", formatted_datetime);
+            answer_card = answer_card.replace("\[tip_amount\]", tip_amount);
             answer_card = answer_card.replace("\[answer\]", item["answer"]);
 
             $("#answer-card-list").append(answer_card);
