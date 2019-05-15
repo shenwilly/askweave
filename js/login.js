@@ -6,9 +6,11 @@ function login (files) {
 
             var public_address;
             arweave.wallets.jwkToAddress(wallet).then((address) => {
-                public_address = address;
-                update_login_state(true, public_address);
-                $('#loginModal').modal('hide');
+				get_name(address).then((output_address) => {
+					public_address = output_address;
+					update_login_state(true, public_address);
+					$('#loginModal').modal('hide');
+				});
             });
         } catch (err) {
             alert('Error logging in: ' + err)

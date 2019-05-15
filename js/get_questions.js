@@ -52,7 +52,7 @@ function get_questions () {
                 var data = JSON.parse(jsonData);
 
                 tx_row['id'] = id
-                tx_row['from'] = await arweave.wallets.ownerToAddress(tx.owner)
+                tx_row['from'] = await get_name(await arweave.wallets.ownerToAddress(tx.owner))
                 tx_row['question'] = data["question"]
                 tx_row['description'] = data["description"]
 
