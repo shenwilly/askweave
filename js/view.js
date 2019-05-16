@@ -49,10 +49,20 @@ $(function(){
 		tip_answer(question_id, answer_id, answer_author, tip_amount);
 	});
 
+	$("#answer-card-list").on('click', '.comment-toggle', function() {
+		var comments = $(this).siblings(".comments-container");
+		if ($(comments).is(":visible")) {
+			$(comments).hide();
+		} else {
+			$(comments).show();
+		}
+	});
+
 	$("#answer-btn").click(function() {
 		var question_id = $('#answer-btn').attr('question-id');
 		answer_question(question_id);
 	});
+
 });
 
 function switch_to_page(page) {
