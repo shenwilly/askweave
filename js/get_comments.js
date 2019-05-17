@@ -73,5 +73,6 @@ async function get_comments(question_id, answer_id) {
         }))
     }
 
+    tx_rows.sort((a, b) => (Number(a.unixTime) - Number(b.unixTime)))
     return tx_rows
 }
