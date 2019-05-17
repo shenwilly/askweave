@@ -58,11 +58,21 @@ $(function(){
 		}
 	});
 
+	$("#answer-card-list").on('click', '.comment-btn', function() {
+		var question_id = $('#answer-btn').attr('question-id');
+		var answer_id = $(this).parents(".answer-card").attr('card-id');
+		var comment_form = $(this).parents("form[name='comment-form']")
+		var comment_field = comment_form.find("textarea");
+
+		if (!$(comment_field).valid()) return;
+
+		post_comment(question_id, answer_id, $(comment_field).val());
+	});
+
 	$("#answer-btn").click(function() {
 		var question_id = $('#answer-btn').attr('question-id');
 		answer_question(question_id);
 	});
-
 });
 
 function switch_to_page(page) {
