@@ -50,7 +50,7 @@ $(function(){
 	});
 
 	$("#answer-card-list").on('click', '.comment-toggle', function() {
-		var comments = $(this).siblings(".comments-container");
+		var comments = $(this).siblings(".comments-list");
 		if ($(comments).is(":visible")) {
 			$(comments).hide();
 		} else {

@@ -71,9 +71,8 @@ function get_answers (question_id) {
                 var tx_answer_id
 
                 var tx = await this.arweave.transactions.get(id)
-                var comments = await get_comments(question_id, id);
-                console.log(comments);
-                console.log("?");
+                var comments = await get_comments(question_id, id)
+                tx_row["comments"] = comments
 
                 tx_row['unixTime'] = '0'
                 tx.get('tags').forEach(tag => {
@@ -125,11 +124,11 @@ function get_answers (question_id) {
             }
         })
 
+        var date_options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' };
         tx_rows.forEach(function (item) {
             var answer_card = $("#answer-card-template").html()
 
             var datetime = new Date(item["unixTime"]*1000);
-            var date_options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' };
             var formatted_datetime = datetime.toLocaleDateString('default', date_options)
 
             var answer_id = item["id"]
@@ -139,13 +138,33 @@ function get_answers (question_id) {
                 // remove trailing zeroes
                 tip_amount = parseFloat(arweave.ar.winstonToAr(winston)).toString();
             } 
+
+            var comments_length = item["comments"].length;
+
             answer_card = answer_card.replace("\[id\]", answer_id);
             answer_card = answer_card.replace("\[author\]", item["from"]);
             answer_card = answer_card.replace("\[datetime\]", formatted_datetime);
             answer_card = answer_card.replace("\[tip_amount\]", tip_amount);
             answer_card = answer_card.replace("\[answer\]", item["answer"]);
+            answer_card = answer_card.replace("\[comments-count\]", comments_length);
 
             $("#answer-card-list").append(answer_card);
+
+            if (comments_length > 0) {
+                var comment_container = $("#answer-card-list").last().find(".comments-container");
+                item["comments"].forEach(function (comment_item) {
+                    var comment_datetime = new Date(comment_item["unixTime"]*1000);
+                    var formatted_comment_datetime = comment_datetime.toLocaleDateString('default', date_options)
+
+                    var comment_card = $("#comment-card-template").html()
+                    comment_card = comment_card.replace("\[id\]", comment_item["id"]);
+                    comment_card = comment_card.replace("\[author\]", comment_item["from"]);
+                    comment_card = comment_card.replace("\[datetime\]", formatted_comment_datetime);
+                    comment_card = comment_card.replace("\[comment\]", comment_item["comment"]);
+                    
+                    comment_container.append(comment_card);
+                });
+            }
         })
     })()
 }
