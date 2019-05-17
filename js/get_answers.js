@@ -59,9 +59,7 @@ function get_answers (question_id) {
 					},
 			}
 
-        console.log('fetching answers...')
     	const res = await this.arweave.api.post(`arql`, query)
-        console.log('fetching answers success!')
         var tx_rows = []
         var tips_hash = {}
         if (res.data == '') {
@@ -73,6 +71,9 @@ function get_answers (question_id) {
                 var tx_answer_id
 
                 var tx = await this.arweave.transactions.get(id)
+                var comments = await get_comments(question_id, id);
+                console.log(comments);
+                console.log("?");
 
                 tx_row['unixTime'] = '0'
                 tx.get('tags').forEach(tag => {

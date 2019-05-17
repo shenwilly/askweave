@@ -30,9 +30,7 @@ function get_questions () {
 					},
 			}
 
-        console.log('fetching questions...')
     	const res = await this.arweave.api.post(`arql`, query)
-        console.log('fetching questions success!')
         var tx_rows = []
         if (res.data == '') {
             tx_rows = []
