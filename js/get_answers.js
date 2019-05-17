@@ -151,7 +151,8 @@ function get_answers (question_id) {
             $("#answer-card-list").append(answer_card);
 
             if (comments_length > 0) {
-                var comment_container = $("#answer-card-list").last().find(".comments-container");
+                var comment_container = $("#answer-card-list .answer-card").last().find(".comments-container");
+                console.log(comment_container)
                 item["comments"].forEach(function (comment_item) {
                     var comment_datetime = new Date(comment_item["unixTime"]*1000);
                     var formatted_comment_datetime = comment_datetime.toLocaleDateString('default', date_options)
