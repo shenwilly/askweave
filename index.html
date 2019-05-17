@@ -247,39 +247,36 @@
 				<div>
 					<span class="px-1 btn-small-text clickable badge comment-toggle">
 						<i class="fa fa-comments text-secondary" aria-hidden="true"></i>
-						<strong><span class="comments-count">4</span> Comments</strong>
+						<strong>[comments-count] Comments</strong>
 					</span>
-					<div class="row comments-container" style="display: none">
-						<div class="col-lg-12 mt-2">
-							<div class="card">
-								<div class="card-body">
-									<p style="white-space: pre-wrap;" class="mb-0">Lirum aosdf sd asdfd</p>
-								</div>
-							</div>
+					<div class="comments-list" style="display: none">
+						<div class="row comments-container">
+
 						</div>
-						<div class="col-lg-12 mt-2">
-							<div class="card">
-								<div class="card-body">
-									<p style="white-space: pre-wrap;" class="mb-0">Lirum aosdf sd asdfd</p>
-								</div>
+						<div class="row comments-input">
+							<div class="col-lg-12 mt-2 logged-in" style="display: none">
+						      	<form name="comment-form">
+						      		<div class="form-group">
+										<textarea class="form-control" rows="2" style="min-width: 100%" name="input_comment" required="true"></textarea>
+						      		</div>
+									<button type="button" class="btn btn-success mt-2 comment-btn">Post Comment</button>
+								</form>
 							</div>
-						</div>
-						<div class="col-lg-12 mt-2">
-							<div class="card">
-								<div class="card-body">
-									<p style="white-space: pre-wrap;" class="mb-0">Lirum aosdf sd asdfd</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-12 mt-2 logged-in" style="display: none">
-					      	<form name="comment-form">
-					      		<div class="form-group">
-									<textarea class="form-control" rows="2" style="min-width: 100%" name="input_comment" required="true"></textarea>
-					      		</div>
-								<button type="button" class="btn btn-success mt-2 comment-btn">Post Comment</button>
-							</form>
 						</div>
 					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="comment-card-template" style="display: none">
+		<div class="col-lg-12 mt-2" card-id="[id]">
+			<div class="card">
+				<div class="card-body px-2 py-1">
+					<p style="white-space: pre-wrap;" class="mb-0">[comment]</p>
+			     	<div style="text-align: right; font-size: 80%" class="text-muted">
+			     		<i>[author] - [datetime]</i>
+			     	</div>
 				</div>
 			</div>
 		</div>
@@ -332,7 +329,7 @@
 				</div>
 	      		<div class="form-group">
 		      	    <label for="input_description" class="mt-4">Description</label>
-					<textarea class="form-control" id="input_description" placeholder="Enter additional description here" style="min-width: 100%" required="true"></textarea>
+					<textarea class="form-control" rows="4" id="input_description" placeholder="Enter additional description here" style="min-width: 100%" required="true"></textarea>
 				</div>
 	      	</form>
 	      </div>
