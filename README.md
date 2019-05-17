@@ -1,7 +1,7 @@
 # Querweave
 A permisionless censor-resistant Q&A platform, powered by Arweave
 
-Last deployed permaweb url: https://arweave.net/1_XwKNTbcW6ROLUENDpcVcMaexGNXz2CLgjeKjGptBc
+Last deployed permaweb url: https://arweave.net/663o6JzbofyRQqOsG9h0EChqQk9z50moBjwjxbQ63pU
 
 Feature wishlist:
   - Share question
