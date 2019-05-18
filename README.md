@@ -7,6 +7,6 @@ Feature wishlist:
   - Share question
   - Search, Sort & Filter
   - Adjustable tx fee & tips
-  - Comments
+  - Topic tags
 
 Feel free to contribute!
