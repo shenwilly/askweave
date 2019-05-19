@@ -10,6 +10,7 @@ $(function(){
 	}
 
 	$("#home-icon").click(function() {
+		window.history.replaceState(null, null, window.location.pathname);
 		switch_to_page("index-page");
 	})
 
@@ -29,6 +30,7 @@ $(function(){
 		$("#detail-page .question-description").html(question_description);
 		$("#answer-btn").attr("question-id", question_id);
 
+		window.location.href = baseUrl + '?q=' + question_id;
 	    get_answers(question_id);
 	    switch_to_page("detail-page");
 	});

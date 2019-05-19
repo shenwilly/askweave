@@ -119,7 +119,7 @@
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
 		<div class="container flex">
-			<a class="navbar-brand" href="#" id="home-icon" onclick="get_questions()">Querweave</a></button>
+			<a class="navbar-brand clickable" style="color: white" id="home-icon" onclick="get_questions()">Querweave</a></button>
 			<span class="navbar-text" id="public-address">
 				
 			</span>
@@ -371,6 +371,7 @@
 	<script>
 		var arweave = Arweave.init({host: 'arweave.net', port: 443, protocol: 'https'});
 		var versionNumber = '0.0.1';
+		var baseUrl = window.location;
 	</script>
 </body>
 </html>
