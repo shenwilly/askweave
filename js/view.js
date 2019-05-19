@@ -1,5 +1,13 @@
 $(function(){
-	switch_to_page("index-page");
+	var question_id_param = $.url('?q');
+	if (typeof question_id_param === 'undefined') {
+		get_questions();
+		switch_to_page("index-page");
+	} else {
+		get_question(question_id_param);
+	    get_answers(question_id_param);
+	    switch_to_page("detail-page");
+	}
 
 	$("#home-icon").click(function() {
 		switch_to_page("index-page");

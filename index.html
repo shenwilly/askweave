@@ -14,6 +14,7 @@
 	
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/js-url/2.5.3/url.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="
 	sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
@@ -23,6 +24,7 @@
 	<script src="./js/view.js"></script>
 	<script src="./js/login.js"></script>
 	<script src="./js/get_questions.js"></script>
+	<script src="./js/get_question.js"></script>
 	<script src="./js/get_answers.js"></script>
 	<script src="./js/get_comments.js"></script>
 	<script src="./js/ask_question.js"></script>
@@ -154,41 +156,43 @@
 	</div>
 
 	<div class="container" id="detail-page" style="display: none">
-		<div class="row mt-4">
-			<div class="col-lg-12">
-				<p class="pull-right text-muted" style="font-size: 0.75rem">
-					<i><span class="question-author"></span> - <span class="question-datetime"></span></i>
-				</p>
-				<h3 class="question-title">[title]</h3>
-				<p class="question-description pre-wrap">[description]</p>
-				<hr>
-			</div>
+		<div class="col-lg-12 mt-5 loading-answer" style="text-align: center">
+			<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
 		</div>
-		<div class="row">
-			<div class="col-lg-12 loading-answer" style="text-align: center">
-				<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+		<div class="detail-container" style="display: none;">
+			<div class="row mt-4">
+				<div class="col-lg-12">
+					<p class="pull-right text-muted" style="font-size: 0.75rem">
+						<i><span class="question-author"></span> - <span class="question-datetime"></span></i>
+					</p>
+					<h3 class="question-title">[title]</h3>
+					<p class="question-description pre-wrap">[description]</p>
+					<hr>
+				</div>
 			</div>
-			<div class="col-lg-12 no-answer" style="text-align: center; display: none">
-				<h5>No Answers Yet</h5>
-			</div>
-			<div class="col-lg-12" id="answer-card-list">
+			<div class="row">
+				<div class="col-lg-12 no-answer" style="text-align: center">
+					<h5>No Answers Yet</h5>
+				</div>
+				<div class="col-lg-12" id="answer-card-list">
 
+				</div>
 			</div>
-		</div>
-		<div class="row mb-4">
-			<div class="col-lg-12 not-logged-in">
-				<hr>
-				<button type="button" class="btn btn-success login-btn" data-toggle="modal" data-target="#loginModal">Login to Answer</button>
-			</div>
-			<div class="col-lg-12 logged-in" style="display: none">
-				<hr>
-				<h5>Have an answer?</h5>
-		      	<form id="answer-form">
-		      		<div class="form-group">
-						<textarea class="form-control" rows="3" style="min-width: 100%" id="input_answer" required="true"></textarea>
-		      		</div>
-					<button type="button" class="btn btn-success mt-3" id="answer-btn">Post Answer!</button>
-				</form>
+			<div class="row mb-4">
+				<div class="col-lg-12 not-logged-in">
+					<hr>
+					<button type="button" class="btn btn-success login-btn" data-toggle="modal" data-target="#loginModal">Login to Answer</button>
+				</div>
+				<div class="col-lg-12 logged-in" style="display: none">
+					<hr>
+					<h5>Have an answer?</h5>
+			      	<form id="answer-form">
+			      		<div class="form-group">
+							<textarea class="form-control" rows="3" style="min-width: 100%" id="input_answer" required="true"></textarea>
+			      		</div>
+						<button type="button" class="btn btn-success mt-3" id="answer-btn">Post Answer!</button>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -367,7 +371,6 @@
 	<script>
 		var arweave = Arweave.init({host: 'arweave.net', port: 443, protocol: 'https'});
 		var versionNumber = '0.0.1';
-		get_questions();
 	</script>
 </body>
 </html>
