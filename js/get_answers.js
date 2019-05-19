@@ -2,8 +2,9 @@ function get_answers (question_id) {
     (async () => {
         $("#answer-card-list").empty()
         $(".loading-answer").show();
+        $(".detail-container").hide();
         $(".no-answer").hide();
-
+        
         let query =
 			{
 			    op: 'and',
@@ -102,7 +103,6 @@ function get_answers (question_id) {
             }))
         }
 
-        $(".loading-answer").hide();
         if (tx_rows.length === 0) {
             $(".no-answer").show();
         }
@@ -165,6 +165,10 @@ function get_answers (question_id) {
                     comment_container.append(comment_card);
                 });
             }
-        })
+        });
+
+
+        $(".loading-answer").hide();
+        $(".detail-container").show();
     })()
 }
