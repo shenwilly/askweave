@@ -30,7 +30,7 @@ $(function(){
 		$("#detail-page .question-description").html(question_description);
 		$("#answer-btn").attr("question-id", question_id);
 
-		window.location.href = baseUrl + '?q=' + question_id;
+		window.history.pushState({},"", window.location.href + "?=" + question_id);
 	    get_answers(question_id);
 	    switch_to_page("detail-page");
 	});
