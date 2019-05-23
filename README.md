@@ -1,5 +1,5 @@
 # Querweave
-A permisionless censor-resistant Q&A platform, powered by Arweave
+A permisionless decentralized Q&A platform, powered by Arweave
 
 Last deployed permaweb url: https://arweave.net/dZSjeyegSJ9VHXSPLkZjDKlhNgTuVyZR4DgPNSmm08o
 
