@@ -1,7 +1,7 @@
 # Querweave
 A permisionless censor-resistant Q&A platform, powered by Arweave
 
-Last deployed permaweb url: https://arweave.net/8VMStbyiUZ54ts9u5xntvcciVlLX5Sf0fWKlVFUa8zg
+Last deployed permaweb url: https://arweave.net/dZSjeyegSJ9VHXSPLkZjDKlhNgTuVyZR4DgPNSmm08o
 
 Feature wishlist:
   - Search, Sort & Filter
