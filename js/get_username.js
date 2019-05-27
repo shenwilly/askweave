@@ -31,8 +31,28 @@ async function get_name(addr) {
 	if(txs.data.length == 0)
 		return addr
 
-	const tx = await this.arweave.transactions.get((txs.data)[0])
+	var tx_rows = []
+    tx_rows = await Promise.all(txs.data.map(async function (id, i) {
+	    let tx_row = {}
+	    let tx = await this.arweave.transactions.get(id)
 
-	return tx.get('data', {decode: true, string: true})
+	    tx_row['unixTime'] = '0'
+	    tx.get('tags').forEach(tag => {
+	        let key = tag.get('name', { decode: true, string: true })
+	        let value = tag.get('value', { decode: true, string: true })
+	        if (key === 'Unix-Time') tx_row['unixTime'] = value
+	    })
+
+	    let data = tx.get('data', {decode: true, string: true})
+	    tx_row['value'] = data
+
+	    return tx_row
+	}))
+
+
+    tx_rows.sort((a, b) => (Number(a.unixTime) - Number(b.unixTime)))
+    var latest_tx = tx_rows.pop()
+
+	return latest_tx.value
 
 }
