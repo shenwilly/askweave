@@ -1,7 +1,7 @@
 # AskWeave
 A permisionless decentralized Q&A platform, powered by Arweave
 
-Last deployed permaweb url: https://arweave.net/dZSjeyegSJ9VHXSPLkZjDKlhNgTuVyZR4DgPNSmm08o
+Last deployed permaweb url: https://arweave.net/GImMiq_Z2PEiHFIZT-1FgSw2-g2FIpNac2VDP8PMC48
 
 Feature wishlist:
   - Search, Sort & Filter
