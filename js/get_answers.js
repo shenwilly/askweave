@@ -96,7 +96,8 @@ function get_answers (question_id) {
                 var data = JSON.parse(jsonData);
 
                 tx_row['id'] = id
-                tx_row['from'] = await get_name(await arweave.wallets.ownerToAddress(tx.owner))
+                tx_row['author_id'] = await arweave.wallets.ownerToAddress(tx.owner)
+                tx_row['author_name'] = await get_name(await arweave.wallets.ownerToAddress(tx.owner))
                 tx_row['answer'] = data["answer"]
 
                 tx_rows.push(tx_row)
@@ -142,7 +143,8 @@ function get_answers (question_id) {
             var comments_length = item["comments"].length;
 
             answer_card = answer_card.replace("\[id\]", answer_id);
-            answer_card = answer_card.replace("\[author\]", item["from"]);
+            answer_card = answer_card.replace("\[author_id\]", item["author_id"]);
+            answer_card = answer_card.replace("\[author\]", item["author_name"]);
             answer_card = answer_card.replace("\[datetime\]", formatted_datetime);
             answer_card = answer_card.replace("\[tip_amount\]", tip_amount);
             answer_card = answer_card.replace("\[answer\]", item["answer"]);

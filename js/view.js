@@ -54,7 +54,7 @@ $(function(){
 	$("#answer-card-list").on('click', '.tip-btn', function() {
 		var question_id = $('#answer-btn').attr('question-id');
 		var answer_id = $(this).parents(".answer-card").attr('card-id');
-		var answer_author = $(this).parents(".answer-card").find('.card-author').html();
+		var answer_author = $(this).parents(".answer-card").attr('author-id');
 		var tip_amount = $(this).parents(".input-group-btn").find('.active input').val();
 		tip_answer(question_id, answer_id, answer_author, tip_amount);
 	});
