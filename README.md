@@ -1,4 +1,4 @@
-# Querweave
+# AskWeave
 A permisionless decentralized Q&A platform, powered by Arweave
 
 Last deployed permaweb url: https://arweave.net/dZSjeyegSJ9VHXSPLkZjDKlhNgTuVyZR4DgPNSmm08o
